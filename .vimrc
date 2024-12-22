@@ -1,10 +1,11 @@
 call plug#begin('~/.vim/plugged')
-
 Plug 'Shougo/neocomplcache'
 Plug 'scrooloose/nerdtree'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'mileszs/ack.vim'
 Plug 'ap/vim-css-color'
+Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 map <F5> :NERDTreeToggle<CR>
 
 call plug#end()
@@ -13,6 +14,12 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1 
 let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
 inoremap <expr><TAB> pumvisible()?"\<C-n>" : "\<TAB>"
+inoremap ( ()<Esc>i
+inoremap { {}<ESC>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+
 
 syntax on
 set number
@@ -26,7 +33,14 @@ set ai
 set hlsearch
 set smartindent
 set encoding=utf-8
+set t_Co=256
+set showmatch
+set hlsearch
+set cindent
+
 map <F4> : set nu!<BAR>set nonu?<CR>
+
+
 
 
 if has('gui_running') || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
@@ -36,7 +50,7 @@ if has('gui_running') || (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256')
 
 colorscheme vim-monokai-tasty
 else
-   colorscheme delek
+   colorscheme vim-monokai-tasty
 endif
 
 if transparent_background
@@ -45,15 +59,17 @@ if transparent_background
    highlight NonText ctermbg=none
 endif
 
-" autocomplete dropdown list colorscheme
+"autocomplete dropdown list colorscheme
 hi Pmenu ctermfg=0 ctermbg=7 
 hi PmenuSel ctermfg=7 ctermbg=4
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 
-call vundle#begin()
+call vundle#begin('~/.vim/plugged')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'mhinz/vim-signify'
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_realrime=1
 call vundle#end()
 filetype plugin indent on
