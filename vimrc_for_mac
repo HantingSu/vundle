@@ -4,15 +4,25 @@ Plug 'scrooloose/nerdtree'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'mileszs/ack.vim'
 Plug 'ap/vim-css-color'
-Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
+"Plug 'mhinz/vim-signify'
+"Plug 'airblade/vim-gitgutter'
 map <F5> :NERDTreeToggle<CR>
+
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+endif
+
 
 call plug#end()
 let transparent_background = 0
 let g:neocomplcache_enable_at_startup = 1 
 let g:neocomplcache_enable_smart_case = 1 
 let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+let g:gitgutter_sign_modified = '!'
+let g:gitgutter_sign_removed = '－'
+highlight SignifySignDelete ctermbg=darkred guibg=#ff00ff
 inoremap <expr><TAB> pumvisible()?"\<C-n>" : "\<TAB>"
 inoremap ( ()<Esc>i
 inoremap { {}<ESC>i
@@ -69,7 +79,7 @@ call vundle#begin('~/.vim/plugged')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'mhinz/vim-signify'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin indent on
