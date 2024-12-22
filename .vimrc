@@ -13,6 +13,9 @@ let transparent_background = 0
 let g:neocomplcache_enable_at_startup = 1 
 let g:neocomplcache_enable_smart_case = 1 
 let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+let g:gitgutter_sign_modified = '!'
+let g:gitgutter_sign_removed = '－'
+highlight SignifySignDelete ctermbg=darkred guibg=#ff00ff
 inoremap <expr><TAB> pumvisible()?"\<C-n>" : "\<TAB>"
 inoremap ( ()<Esc>i
 inoremap { {}<ESC>i
@@ -37,7 +40,7 @@ set t_Co=256
 set showmatch
 set hlsearch
 set cindent
-
+set updatetime=50
 map <F4> : set nu!<BAR>set nonu?<CR>
 
 
@@ -70,6 +73,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'mhinz/vim-signify'
 Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_realrime=1
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin indent on
