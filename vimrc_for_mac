@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-fff
 Plug 'Shougo/neocomplcache'
 Plug 'scrooloose/nerdtree'
 Plug 'patstockwell/vim-monokai-tasty'
